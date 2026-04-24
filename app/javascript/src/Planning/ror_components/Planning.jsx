@@ -3,7 +3,7 @@ import ListeCours from './Liste_Cours';
 
 //const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours"
 //const API_ENDPOINT = "http://100.115.92.199:4000/api/v4/cours"
-const API_ENDPOINT = "https://planning4-testing.herokuapp.com/api/v4/cours"
+const API_ENDPOINT = "https://planning-iae-staging-e617fc28ec21.herokuapp.com/api/v4/cours"
 
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
