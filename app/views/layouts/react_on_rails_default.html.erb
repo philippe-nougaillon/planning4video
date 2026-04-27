@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>React on Rails</title>
-    <%= csrf_meta_tags %>
+  <title>React on Rails</title>
+  <%= csrf_meta_tags %>
 
-    <!-- Empty pack tags - React on Rails injects component CSS/JS here -->
-    <%= stylesheet_pack_tag %>
-    <%= javascript_pack_tag %>
-  </head>
-
+  <%# Buscamos el CSS y el JS dentro de la subcarpeta generated %>
+  <%= stylesheet_pack_tag 'generated/Planning' %>
+  <%= javascript_pack_tag 'generated/Planning' %>
+</head>
   <body>
     <%= yield %>
   </body>

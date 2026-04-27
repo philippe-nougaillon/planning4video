@@ -9,6 +9,11 @@ default: &default
   # Notice that this is a relative path to source_path
   source_entry_path: packs
 
+  extensions:
+      - .js
+      - .jsx    
+      - .css
+      - .scss
   # If nested_entries is true, then we'll pick up subdirectories within the source_entry_path.
   # You cannot set this option to true if you set source_entry_path to '/'
   nested_entries: true
@@ -27,7 +32,7 @@ default: &default
   shakapacker_precompile: true
 
   # Location for manifest.json, defaults to {public_output_path}/manifest.json if unset
-  # manifest_path: public/packs/manifest.json
+  manifest_path: public/packs/manifest.json
 
   # Location for private server-side bundles (e.g., for SSR)
   # These bundles are not served publicly, unlike public_output_path
@@ -91,6 +96,7 @@ development:
   <<: *default
   compiler_strategy: mtime
 
+    
   # Reference: https://webpack.js.org/configuration/dev-server/
   # Keys not described there are documented inline and in https://github.com/shakacode/shakapacker/
   dev_server:
