@@ -118,7 +118,7 @@ const Planning = () => {
 
   const footer = (
     <div className="flex flex-row gap-10 p-6">
-      <div className="col-sm-6">
+      <div className="col-sm-6 capitalize">
         <h4>{moment().locale("fr").format("dddd D/MM HH:mm")}</h4>
       </div>
       <div className="col-sm-5">
@@ -138,37 +138,29 @@ const Planning = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       {planning.isLoading ? (
-        <h1>Chargement des données...</h1>
+        <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       ) : currentPage === -1 ? (
-        <div>
-          <img
-            src="/pageprincipal.png"
-            alt="Loading..."
-            width="auto"
-            height={700}
-          />
+        <div className="flex justify-center">
+          <img src="/pageprincipal.png" alt="Loading" className="max-w-full h-auto" />
         </div>
       ) : (
-        <div className="flex flex-col justify-between items-start">
-          <div className="flex flex-row items-center  w-screen px-8 mb-4">
-            <div className="flex-1 ">
-              <img
-                src="/LogoIAE.png"
-                alt="Planning IAE Paris"
-                className="h-auto w-80"
-              />
-            </div>
-            <div className="flex-1 text-[#122e4c]  text-left font-bold text-3xl whitespace-nowrap capitalize">
+      <div className="flex flex-col md:flex-col w-full">
+          {/* Header: Logo y Fecha */}
+          <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-8 py-4 gap-4">
+            <img src="/LogoIAE.png" alt="Logo" className="h-auto w-48 md:w-80" />
+            <div className="text-[#122e4c] font-bold text-xl md:text-3xl text-center md:text-left capitalize">
               Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
             </div>
           </div>
-          <div className="flex flex-row items-center w-full px-10 mb-4 mt-12  font-bold text-gray-500 uppercase text-sm tracking-wider">
-            <div className="w-1/5 min-w-[150px] ">Horaires</div>
-            <div className="flex-1 pl-2">Formation / Matière</div>
-            <div className="w-1/4 pl-7">Intervenant</div>
-            <div className="w-[170px] pl-8">Salle</div>
+
+          {/* Tabla Header: Solo visible en pantallas grandes (md) */}
+          <div className="hidden md:flex flex-row items-center w-full px-10 mb-2 mt-8 font-bold text-gray-500 uppercase text-xs tracking-widest">
+            <div className="w-1/6">Horaires</div>
+            <div className="flex-1 px-4">Formation / Matière</div>
+            <div className="w-1/4">Intervenant</div>
+            <div className="w-1/6 text-right">Salle</div>
           </div>
 
           <ListeCours items={paginatedPlanning} />

@@ -14,8 +14,8 @@ module ActiveSupport
   end
 end
 
-
 # Ensure that tests run against fresh webpack assets.
 ActiveSupport::TestCase.setup do
   ReactOnRails::TestHelper.ensure_assets_compiled
 end
+# Asegúrate de presionar ENTER aquí para dejar una línea vacía al fina
