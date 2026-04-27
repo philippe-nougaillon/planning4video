@@ -3,3 +3,9 @@
 // import "controllers"
 import '../../assets/stylesheets/application.css';
 console.log("Tailwind pack cargado");
+
+import ReactOnRails from 'react-on-rails';
+import Planning from '../src/Planning/ror_components/Planning';
+
+// Esto registra el componente para que Rails pueda usarlo con react_component('Planning')
+ReactOnRails.register({ Planning });

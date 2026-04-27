@@ -147,7 +147,6 @@ const Planning = () => {
         </div>
       ) : (
       <div className="flex flex-col md:flex-col w-full">
-          {/* Header: Logo y Fecha */}
           <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-8 py-4 gap-4">
             <img src="/LogoIAE.png" alt="Logo" className="h-auto w-48 md:w-80" />
             <div className="text-[#122e4c] font-bold text-xl md:text-3xl text-center md:text-left capitalize">
@@ -155,8 +154,7 @@ const Planning = () => {
             </div>
           </div>
 
-          {/* Tabla Header: Solo visible en pantallas grandes (md) */}
-          <div className="hidden md:flex flex-row items-center w-full px-10 mb-2 mt-8 font-bold text-gray-500 uppercase text-xs tracking-widest">
+          <div className="flex flex-row bg-red-200 items-center w-full px-10 mb-2 mt-8 font-bold text-gray-500 uppercase text-xs tracking-widest">
             <div className="w-1/6">Horaires</div>
             <div className="flex-1 px-4">Formation / Matière</div>
             <div className="w-1/4">Intervenant</div>

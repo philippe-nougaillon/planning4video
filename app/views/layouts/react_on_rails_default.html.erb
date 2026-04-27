@@ -4,11 +4,13 @@
   <title>React on Rails</title>
   <%= csrf_meta_tags %>
 
-  <%# Buscamos el CSS y el JS dentro de la subcarpeta generated %>
-  <%= stylesheet_pack_tag 'generated/Planning' %>
-  <%= javascript_pack_tag 'generated/Planning' %>
+  <%# Eliminamos las líneas de 'generated/Planning' porque no existen como entrypoints %>
+  <%= stylesheet_pack_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
 </head>
   <body>
     <%= yield %>
   </body>
 </html>
+
+
