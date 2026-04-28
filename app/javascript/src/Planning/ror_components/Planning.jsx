@@ -28,7 +28,7 @@ const useInterval = (callback, delay) => {
 
 const Planning = () => {
   const per_page = 7; // nombre de lignes par page
-  const time_to_sleep = 11; // pause entre deux pages (en secondes)
+  const time_to_sleep = 4; // pause entre deux pages (en secondes)
   const [currentPage, setCurrentPage] = useState(-1);
   const [currentTick, setCurrentTick] = useState(time_to_sleep);
   const [paginatedPlanning, setPaginatedPlanning] = useState(new Array());
@@ -138,27 +138,35 @@ const Planning = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
       {planning.isLoading ? (
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       ) : currentPage === -1 ? (
         <div className="flex justify-center">
-          <img src="/pageprincipal.png" alt="Loading" className="max-w-full h-auto" />
+          <img
+            src="/pageprincipal.png"
+            alt="Loading"
+            className="max-w-full h-auto"
+          />
         </div>
       ) : (
-      <div className="flex flex-col md:flex-col w-full">
-          <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-8 py-4 gap-4">
-            <img src="/LogoIAE.png" alt="Logo" className="h-auto w-48 md:w-80" />
-            <div className="text-[#122e4c] font-bold text-xl md:text-3xl text-center md:text-left capitalize">
+        <div className=" w-full h-screen">
+          <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
+            <img
+              src="/LogoIAE.png"
+              alt="Logo"
+              className="h-auto w-48 md:w-80"
+            />
+            <div className="text-[#122e4c] font-bold text-base md:text-3xl text-left capitalize">
               Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
             </div>
           </div>
 
-          <div className="flex flex-row bg-red-200 items-center w-full px-10 mb-2 mt-8 font-bold text-gray-500 uppercase text-xs tracking-widest">
-            <div className="w-1/6">Horaires</div>
-            <div className="flex-1 px-4">Formation / Matière</div>
-            <div className="w-1/4">Intervenant</div>
-            <div className="w-1/6 text-right">Salle</div>
+          <div className="flex flex-row text-sm items-center justify-between  px-8  w-full  mb-2 mt-8 font-bold text-gray-500 tracking-widest">
+            <div className="w-1/6 pr-6">HORAIRES</div>
+            <div className="flex-1 pl-8">FORMATION</div>
+            <div className="flex-1 pl-10">INTERVENANT</div>
+            <div className="flex-1">SALLE</div>
           </div>
 
           <ListeCours items={paginatedPlanning} />
