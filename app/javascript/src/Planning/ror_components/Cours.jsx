@@ -14,22 +14,25 @@ const Cours = ({ item }) => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center justify-between border-b md:border-4 border-gray-200 p-8  w-full  ">
+    <div className="flex flex-row items-center justify-between border-y-4 border-gray-100 p-8 w-full bg-white">
+      
       <div className="w-1/6">
-        <div className="text-[#122e4c] font-bold  md:text-center border-r-4 border-gray-300 pr-6">
-          <div className="whitespace-nowrap">{item.debut_fin_json_v2}</div>
-          <div className="md:px-2">{progressBar}</div>
+        <div className="font-bold text-center border-r-4 border-gray-200 pr-6 text-[#122e4c]">
+          <div className="text-xl whitespace-nowrap mb-1">
+            {item.debut_fin_json_v2}
+          </div>
+          <div className="px-1">{progressBar}</div>
         </div>
       </div>
-      <div className="flex-1 pl-8">
-        <h3 className="text-[#122e4c] font-bold text-lg md:text-xl leading-tight">
+      <div className="flex-1 px-8">
+        <h3 className="font-black text-2xl leading-tight uppercase tracking-tight text-[#122e4c]" >
           {item.formation_json_v2}
         </h3>
-        <div className="text-gray-600 text-sm md:text-base mt-1 italic">
+      <div className="text-gray-500 text-base mt-1 italic font-medium">
           {item.matiere_json}
         </div>
       </div>
-      <div className="flex-1 pl-10">
+      <div className="flex-1 ">
         <p className="text-gray-800 font-semibold">{item.intervenant_json}</p>
         {/* {item.intervenant_binome_json && (
           <p className="text-red-500 italic text-xs">
@@ -37,7 +40,7 @@ const Cours = ({ item }) => {
           </p>
         )} */}
       </div>
-      <div className="flex-1">
+      <div className="flex-1 text-left">
         <span className="text-[#122e4c] text-xl md:text-2xl font-black">
           {item.salle_json_v2}
         </span>
