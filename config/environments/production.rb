@@ -79,6 +79,14 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
+  config.action_dispatch.default_headers = {
+    # Sites autorisés à utiliser une frame
+    'Content-Security-Policy' => "frame-ancestors 'self' https://iaeparis.ec-video.fr/ http://localhost https://localhost",
+    
+    # On désactive X-Frame-Options pour laisser la main à la CSP
+    'X-Frame-Options' => '' 
+  }
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
