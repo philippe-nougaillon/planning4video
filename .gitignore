@@ -45,3 +45,4 @@ yarn-debug.log*
 **/generated/**
 ssr-generated
 .env
+public/packs/manifest.json
