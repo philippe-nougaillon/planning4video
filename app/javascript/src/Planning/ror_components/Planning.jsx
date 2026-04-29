@@ -5,8 +5,7 @@ import "moment/locale/fr";
 
 //const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours"
 //const API_ENDPOINT = "http://100.115.92.199:4000/api/v4/cours"
-const API_ENDPOINT =
-  "https://planning.iae-paris.com/api/v4/cours";
+const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours";
 
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
@@ -150,29 +149,31 @@ const Planning = () => {
           />
         </div>
       ) : (
-        <div className=" w-full h-screen">
-          <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
-            <img
-              src="/LogoIAE.png"
-              alt="Logo"
-              className="h-auto w-48 md:w-80"
-            />
-            <div className="text-[#122e4c] font-bold text-base md:text-3xl text-left capitalize">
-              Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
+        <div className=" w-full h-screen bg-white justify-center overflow-hidden">
+          <div className="w-full max-w-[3960px] h-full">
+            <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
+              <img
+                src="/LogoIAE.png"
+                alt="Logo"
+                className="h-auto w-48 md:w-80"
+              />
+              <div className="text-[#122e4c] font-bold text-base md:text-3xl text-left">
+                Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-row text-sm items-center justify-between  px-8  w-full  mb-2 mt-8 font-bold text-gray-500 tracking-widest">
-            <div className="w-1/6 pr-6">HORAIRES</div>
-            <div className="flex-1 pl-8">FORMATION</div>
-            <div className="flex-1 pl-10">INTERVENANT</div>
-            <div className="flex-1">SALLE</div>
-          </div>
+            <div className="flex flex-row text-sm items-center justify-between  px-8  w-full  mb-2 mt-8 font-bold text-gray-500 tracking-widest">
+              <div className="w-1/6 pr-6">HORAIRES</div>
+              <div className="flex-1 pl-8">FORMATION</div>
+              <div className="flex-1 pl-10">INTERVENANT</div>
+              <div className="flex-1">SALLE</div>
+            </div>
 
-          <ListeCours items={paginatedPlanning} />
+            <ListeCours items={paginatedPlanning} />
+          </div>
         </div>
       )}
-      {footer}
+      {currentPage !== -1 && footer}
     </div>
   );
 };
