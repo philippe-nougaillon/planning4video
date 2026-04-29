@@ -8,7 +8,7 @@ const Cours = ({ item }) => {
     <div className="w-full border border-gray-300 h-4 mt-1 rounded-full overflow-hidden bg-gray-100">
       <div
         className="bg-[#e68708] h-full"
-        style={{ width: `${item.progress_bar_pct2}%` }}
+        style={{ width: `${item.progress_bar_pct2 || 0 }% ` }}
       ></div>
     </div>
   );
