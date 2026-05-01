@@ -9,7 +9,10 @@ const Cours = ({ item }) => {
       <div
         className="bg-[#e68708] h-full rounded-full absolute left-0 top-0"
         style={{ width: `${item.progress_bar_pct2 || 0}%` }}
-      ></div>
+      >
+        <h1>{ item.progress_bar_pct2 }</h1>
+        
+      </div>
     </div>
   );
 

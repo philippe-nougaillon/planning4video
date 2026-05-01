@@ -3,9 +3,9 @@ import ListeCours from "./Liste_Cours";
 import moment from "moment";
 import "moment/locale/fr";
 
-//const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours"
+const API_ENDPOINT = "https://planning-iae-staging-e617fc28ec21.herokuapp.com/api/v4/cours"
 //const API_ENDPOINT = "http://100.115.92.199:4000/api/v4/cours"
-const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours";
+//const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours";
 
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
@@ -108,7 +108,7 @@ const Planning = () => {
     if (currentPage < planning.totalPages) {
       setCurrentPage(currentPage + 1);
     } else {
-      //console.log("Fetching Planning...")
+      console.log("Fetching Planning...")
       fetchPlanning();
       setCurrentPage(0);
     }
