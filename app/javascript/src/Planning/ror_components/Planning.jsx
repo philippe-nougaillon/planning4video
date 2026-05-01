@@ -28,6 +28,7 @@ const useInterval = (callback, delay) => {
 const Planning = () => {
   const per_page = 7; // nombre de lignes par page
   const time_to_sleep = 10; // pause entre deux pages (en secondes)
+  const reload_data_every = 60 // recharger les données chaque minute 
   const [currentPage, setCurrentPage] = useState(-1);
   const [currentTick, setCurrentTick] = useState(time_to_sleep);
   const [paginatedPlanning, setPaginatedPlanning] = useState([]);
@@ -119,9 +120,9 @@ const Planning = () => {
   }, time_to_sleep * 1000);
 
   useInterval(() => {
-    //console.log("Planning Fetching DATA INTERVAL 30''...");
+    //console.log("Planning Fetching new DATA...");
     fetchPlanning();
-  }, 30 * 1000);
+  }, reload_data_every * 1000);
 
   const footer = (
     <div className="flex flex-row gap-10 p-6">
