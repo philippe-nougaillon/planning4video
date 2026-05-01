@@ -77,14 +77,14 @@ const Planning = () => {
           type: "PLANNING_FETCH_SUCCESS",
           payload: result,
         });
-        console.log("PLANNING_FETCH_SUCCESS");
+        //console.log("PLANNING_FETCH_SUCCESS");
         setCurrentPage((prev) => (prev === -1 ? 0 : prev));
       })
       .catch(() => dispatchPlanning({ type: "PLANNING_FETCH_FAILURE" }));
   };
 
   useEffect(() => {
-    console.log("PLANNING_EFFECT #1 (app first run)")
+    //console.log("PLANNING_EFFECT #1 (app first run)")
     fetchPlanning();
   }, []);
 
@@ -95,9 +95,9 @@ const Planning = () => {
     setPaginatedPlanning(
       planning.data.slice(item_position, item_position + per_page),
     );
-    console.log(
-      `PLANNING_PAGINATE data.length: ${planning.data.length} | pages: ${planning.data.length / per_page} | currentPage: ${currentPage} | slice start: ${item_position} | slice end: ${item_position + per_page}`,
-    );
+    // console.log(
+    //   `PLANNING_PAGINATE data.length: ${planning.data.length} | pages: ${planning.data.length / per_page} | currentPage: ${currentPage} | slice start: ${item_position} | slice end: ${item_position + per_page}`,
+    // );
   }, [currentPage, planning.data]);
 
   useInterval(() => {
@@ -119,7 +119,7 @@ const Planning = () => {
   }, time_to_sleep * 1000);
 
   useInterval(() => {
-    console.log("Planning Fetching DATA INTERVAL 30''...");
+    //console.log("Planning Fetching DATA INTERVAL 30''...");
     fetchPlanning();
   }, 30 * 1000);
 
