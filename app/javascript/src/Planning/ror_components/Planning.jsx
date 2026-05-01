@@ -27,10 +27,10 @@ const useInterval = (callback, delay) => {
 
 const Planning = () => {
   const per_page = 7; // nombre de lignes par page
-  const time_to_sleep = 30; // pause entre deux pages (en secondes)
+  const time_to_sleep = 10; // pause entre deux pages (en secondes)
   const [currentPage, setCurrentPage] = useState(-1);
   const [currentTick, setCurrentTick] = useState(time_to_sleep);
-  const [paginatedPlanning, setPaginatedPlanning] = useState(new Array());
+  const [paginatedPlanning, setPaginatedPlanning] = useState([]);
 
   const planningReducer = (state, action) => {
     switch (action.type) {
@@ -46,7 +46,8 @@ const Planning = () => {
           isLoading: false,
           isError: false,
           data: action.payload,
-          totalPages: Math.trunc(action.payload.length / per_page),
+          totalPages: Math.max(0, Math.ceil(action.payload.length / per_page) - 1),
+
         };
       case "PLANNING_FETCH_FAILURE":
         return {
@@ -76,24 +77,28 @@ const Planning = () => {
           type: "PLANNING_FETCH_SUCCESS",
           payload: result,
         });
+        console.log("PLANNING_FETCH_SUCCESS");
+        setCurrentPage((prev) => (prev === -1 ? 0 : prev));
       })
       .catch(() => dispatchPlanning({ type: "PLANNING_FETCH_FAILURE" }));
   };
 
   useEffect(() => {
+    console.log("PLANNING_EFFECT #1 (app first run)")
     fetchPlanning();
   }, []);
 
   useEffect(() => {
     // Pagine la liste des cours par tranche de 'per_page'
+    if (currentPage === -1) return;
     const item_position = per_page * currentPage;
     setPaginatedPlanning(
       planning.data.slice(item_position, item_position + per_page),
     );
     console.log(
-      `data.length: ${planning.data.length} | pages: ${planning.data.length / per_page} | currentPage: ${currentPage} | slice start: ${item_position} | slice end: ${item_position + per_page}`,
+      `PLANNING_PAGINATE data.length: ${planning.data.length} | pages: ${planning.data.length / per_page} | currentPage: ${currentPage} | slice start: ${item_position} | slice end: ${item_position + per_page}`,
     );
-  }, [currentPage]);
+  }, [currentPage, planning.data]);
 
   useInterval(() => {
     // Décompte les secondes avant le changement de page
@@ -108,12 +113,15 @@ const Planning = () => {
     if (currentPage < planning.totalPages) {
       setCurrentPage(currentPage + 1);
     } else {
-      console.log("Fetching Planning...")
-      fetchPlanning();
       setCurrentPage(0);
     }
     setCurrentTick(time_to_sleep);
   }, time_to_sleep * 1000);
+
+  useInterval(() => {
+    console.log("Planning Fetching DATA INTERVAL 30''...");
+    fetchPlanning();
+  }, 30 * 1000);
 
   const footer = (
     <div className="flex flex-row gap-10 p-6">
