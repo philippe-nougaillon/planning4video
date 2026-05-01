@@ -146,7 +146,7 @@ const Planning = () => {
   );
 
   return (
-    <div>
+    <>
       {planning.isLoading ? (
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       ) : currentPage === -1 ? (
@@ -158,7 +158,7 @@ const Planning = () => {
           />
         </div>
       ) : (
-        <div className=" w-full h-screen bg-white justify-center overflow-hidden px-20 py-10">
+        <div className="w-full h-screen bg-white justify-center overflow-hidden px-20 py-10">
           <div className="w-full max-w-[3960px] h-full">
             <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
               <img
@@ -183,7 +183,7 @@ const Planning = () => {
         </div>
       )}
       {currentPage !== -1 && footer}
-    </div>
+    </>
   );
 };
 
