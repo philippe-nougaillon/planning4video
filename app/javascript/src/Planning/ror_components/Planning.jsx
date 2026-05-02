@@ -90,8 +90,8 @@ const Planning = () => {
   }, []);
 
   useEffect(() => {
-    // Pagine la liste des cours par tranche de 'per_page'
     if (currentPage === -1) return;
+    // Pagine la liste des cours par tranche de 'per_page'
     const item_position = per_page * currentPage;
     setPaginatedPlanning(
       planning.data.slice(item_position, item_position + per_page),
@@ -147,41 +147,34 @@ const Planning = () => {
 
   return (
     <>
-      {planning.isLoading ? (
+      {planning.isLoading && (
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
-      ) : currentPage === -1 ? (
-        <div className="">
-          <img
-            src="/pageprincipal.png"
-            alt="Loading"
-            className="h-full w-full "
-          />
-        </div>
-      ) : (
-        <div className="w-full h-screen bg-white justify-center overflow-hidden px-20 py-10">
-          <div className="w-full max-w-[3960px] h-full">
-            <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
-              <img
-                src="/LogoIAE.png"
-                alt="Logo"
-                className="h-64 w-fit"
-              />
-              <div className="text-[#122e4c] font-bold text-5xl text-left tracking-widest uppercase">
-                Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
-              </div>
-            </div>
-
-            <div className="flex flex-row text-5xl items-center justify-between  px-20   w-full  mb-20 mt-50 font-bold text-gray-500 tracking-widest">
-              <div className="w-1/6 pr-6">HORAIRES</div>
-              <div className="flex-1 px-20 ">FORMATION</div>
-              <div className="flex-1 pl-10">INTERVENANT</div>
-              <div className="flex-1">SALLE</div>
-            </div>
-
-            <ListeCours items={paginatedPlanning} />
-          </div>
-        </div>
       )}
+
+      <div className="w-full h-screen bg-white justify-center overflow-hidden px-20 py-10">
+        <div className="w-full max-w-[3960px] h-full">
+          <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
+            <img
+              src="/LogoIAE.png"
+              alt="Logo"
+              className="h-64 w-fit"
+            />
+            <div className="text-[#122e4c] font-bold text-5xl text-left tracking-widest uppercase">
+              Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
+            </div>
+          </div>
+
+          <div className="flex flex-row text-5xl items-center justify-between  px-20   w-full  mb-20 mt-50 font-bold text-gray-500 tracking-widest">
+            <div className="w-1/6 pr-6">HORAIRES</div>
+            <div className="flex-1 px-20 ">FORMATION</div>
+            <div className="flex-1 pl-10">INTERVENANT</div>
+            <div className="flex-1">SALLE</div>
+          </div>
+
+          <ListeCours items={paginatedPlanning} />
+
+        </div>
+      </div>
       {currentPage !== -1 && footer}
     </>
   );
