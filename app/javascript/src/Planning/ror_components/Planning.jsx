@@ -26,7 +26,7 @@ const useInterval = (callback, delay) => {
 };
 
 const Planning = () => {
-  const per_page = 7; // nombre de lignes par page
+  const per_page = 2; // nombre de lignes par page
   const time_to_sleep = 10; // pause entre deux pages (en secondes)
   const reload_data_every = 60 // recharger les données chaque minute 
   const [currentPage, setCurrentPage] = useState(-1);
