@@ -3,9 +3,9 @@ import ListeCours from "./Liste_Cours";
 import moment from "moment";
 import "moment/locale/fr";
 
-const API_ENDPOINT = "https://planning-iae-staging-e617fc28ec21.herokuapp.com/api/v4/cours"
+const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours";
+//const API_ENDPOINT = "https://planning-iae-staging-e617fc28ec21.herokuapp.com/api/v4/cours"
 //const API_ENDPOINT = "http://100.115.92.199:4000/api/v4/cours"
-//const API_ENDPOINT = "https://planning.iae-paris.com/api/v4/cours";
 
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
@@ -26,7 +26,7 @@ const useInterval = (callback, delay) => {
 };
 
 const Planning = () => {
-  const per_page = 2; // nombre de lignes par page
+  const per_page = 7; // nombre de lignes par page
   const time_to_sleep = 10; // pause entre deux pages (en secondes)
   const reload_data_every = 60 // recharger les données chaque minute 
   const [currentPage, setCurrentPage] = useState(-1);
@@ -110,7 +110,7 @@ const Planning = () => {
   }, 1000);
 
   useInterval(() => {
-    // Changer de page à l'expiration du délai et recharger si première page
+    // Changer de page à l'expiration du délai 
     if (currentPage < planning.totalPages) {
       setCurrentPage(currentPage + 1);
     } else {
@@ -120,7 +120,7 @@ const Planning = () => {
   }, time_to_sleep * 1000);
 
   useInterval(() => {
-    //console.log("Planning Fetching new DATA...");
+    //console.log("Planning Fetching DATA from Planning...");
     fetchPlanning();
   }, reload_data_every * 1000);
 
