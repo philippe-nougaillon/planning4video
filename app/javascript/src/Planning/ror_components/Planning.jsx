@@ -144,11 +144,7 @@ const Planning = () => {
   );
 
   const footer = (
-    <div className="flex flex-row gap-10 p-6 text-4xl">
-      <div className="capitalize">
-        <h4>{moment().locale("fr").format("dddd D/MM HH:mm")}</h4>
-      </div>
-
+    <div className="flex flex-row gap-10 p-6 text-4xl text-[#122e4c] font-semibold ">
       <div>
         <h4>
           <div className="progress">
@@ -164,7 +160,7 @@ const Planning = () => {
       </div>
 
       <div>
-        <h4>{`Page: ${currentPage + 1} sur ${planning.totalPages + 1}`}</h4>
+        <h4>{`Page : ${currentPage + 1} sur ${planning.totalPages + 1}`}</h4>
       </div>
     </div>
   );
@@ -175,11 +171,12 @@ const Planning = () => {
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       )}
 
-      <div className="w-screen h-screen bg-white flex flex-col overflow-hidden px-10">
+      <div className="w-screen h-screen bg-white flex flex-col overflow-hidden px-10 border-gradient">
+        
         <div className="flex items-center justify-between px-8 py-4">
           <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
           <div className="text-[#122e4c] font-bold text-5xl tracking-widest uppercase">
-            Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
+           {moment().locale("fr").format("dddd D MMMM YYYY HH:mm")}
           </div>
         </div>
 
@@ -193,6 +190,7 @@ const Planning = () => {
         <ListeCours items={paginatedPlanning} />
 
         {currentPage !== -1 && footer}
+        
       </div>
     </>
   );

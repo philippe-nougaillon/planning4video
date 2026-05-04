@@ -5,3 +5,15 @@ html, body {
   height: 100%;
   margin: 0;
 }
+
+
+.border-gradient {
+  border: 40px solid;
+  border-image: linear-gradient(
+    90deg,
+    #fde68a, /* amarillo */
+    #fbcfe8, /* rosa */
+    #a7f3d0, /* verde */
+    #bfdbfe  /* azul */
+  ) 1;
+}
