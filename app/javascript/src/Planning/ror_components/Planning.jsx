@@ -103,23 +103,30 @@ const Planning = () => {
     // );
   }, [currentPage, planning.data]);
 
-  useInterval(() => {
-    // Décompte les secondes avant le changement de page
-    if (currentTick > 0) {
-      setCurrentTick(currentTick - 1);
-    }
-    //console.log(currentTick);
-  }, 1000);
 
   useInterval(() => {
-    // Changer de page à l'expiration du délai
-    if (currentPage < planning.totalPages) {
-      setCurrentPage(currentPage + 1);
-    } else {
-      setCurrentPage(0);
+        // Décompte les secondes avant le changement de page
+  setCurrentTick((prev) => {
+    if (prev > 0) {
+      return prev - 1;
     }
-    setCurrentTick(time_to_sleep);
-  }, time_to_sleep * 1000);
+    return 0;
+  });
+}, 1000);
+
+
+  useInterval(() => {
+        // Changer de page à l'expiration du délai
+  setCurrentPage((prev) => {
+    if (prev < planning.totalPages) {
+      return prev + 1;
+    } else {
+      return 0;
+    }
+  });
+
+  setCurrentTick(time_to_sleep);
+}, time_to_sleep * 1000);
 
   useInterval(() => {
     //console.log("Planning Fetching DATA from Planning...");
