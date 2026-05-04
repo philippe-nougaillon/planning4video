@@ -15,7 +15,7 @@ const Cours = ({ item }) => {
   );
 
   return (
-    <div className="flex flex-row items-center justify-between border-y-20 border-gray-50 py-36 px-10 w-full bg-white tracking-widest">
+    <div className="flex flex-row items-center justify-between border-y-20 border-gray-50 py-28 px-10 w-full bg-white tracking-widest">
       <div className="w-1/6">
         <div className="font-bold text-center border-r-10 border-gray-200 pr-20 text-[#122e4c] ">
           <div className="text-6xl whitespace-nowrap mb-1">
