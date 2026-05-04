@@ -24,7 +24,7 @@ const Cours = ({ item }) => {
           <div className="px-1">{progressBar}</div>
         </div>
       </div>
-      <div className="flex-1 px-20">
+      <div className="w-1/2 mx-16">
         <h3 className="font-black text-7xl leading-tight   text-[#122e4c]">
           {item.formation_json_v2}
         </h3>
@@ -32,7 +32,7 @@ const Cours = ({ item }) => {
           {item.matiere_json}
         </div>
       </div>
-      <div className="flex-1">
+      <div className="w-1/5 pl-10">
         <p className="text-gray-800 font-semibold text-5xl">
           {item.intervenant_json}
         </p>
@@ -42,7 +42,7 @@ const Cours = ({ item }) => {
           </p>
         )}
       </div>
-      <div className="flex-1 text-left">
+      <div className="w-1/6 text-left">
         <span className="text-[#122e4c] text-7xl font-black">
           {item.salle_json_v2}
         </span>

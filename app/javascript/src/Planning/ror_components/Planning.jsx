@@ -151,7 +151,7 @@ const Planning = () => {
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       )}
 
-      <div className="w-full min-h-screen bg-red-700 flex justify-center overflow-hidden px-20 py-10">
+      <div className="w-full min-h-screen bg-white flex justify-center overflow-hidden px-20 py-10">
         <div className="w-full max-w-[3960px] min-h-screen">
           <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
             <img
@@ -164,11 +164,11 @@ const Planning = () => {
             </div>
           </div>
 
-          <div className="flex flex-row text-5xl items-center justify-between  px-20   w-full  mb-20 mt-50 font-bold text-gray-500 tracking-widest">
+          <div className="flex flex-row text-5xl items-center justify-between px-20 w-full mb-20 mt-20 font-bold text-gray-500 tracking-widest">
             <div className="w-1/6 pr-6">HORAIRES</div>
-            <div className="flex-1 px-20 ">FORMATION</div>
-            <div className="flex-1 pl-10">INTERVENANT</div>
-            <div className="flex-1">SALLE</div>
+            <div className="w-1/2 mx-16">FORMATION</div>
+            <div className="w-1/5 pl-10">INTERVENANT</div>
+            <div className="w-1/6">SALLE</div>
           </div>
 
           <ListeCours items={paginatedPlanning} />
