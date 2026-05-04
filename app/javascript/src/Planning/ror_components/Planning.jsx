@@ -151,8 +151,8 @@ const Planning = () => {
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       )}
 
-      <div className="w-full h-screen bg-white justify-center overflow-hidden px-20 py-10">
-        <div className="w-full max-w-[3960px] h-full">
+      <div className="w-full min-h-screen bg-red-700 flex justify-center overflow-hidden px-20 py-10">
+        <div className="w-full max-w-[3960px] min-h-screen">
           <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
             <img
               src="/LogoIAE.png"
