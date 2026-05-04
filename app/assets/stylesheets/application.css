@@ -8,7 +8,7 @@ html, body {
 
 
 .border-gradient {
-  border: 40px solid;
+  border: 30px solid;
   border-image: linear-gradient(
     90deg,
     #fde68a, /* amarillo */
@@ -16,4 +16,5 @@ html, body {
     #a7f3d0, /* verde */
     #bfdbfe  /* azul */
   ) 1;
+  border-radius: 16px;
 }

@@ -15,35 +15,35 @@ const Cours = ({ item }) => {
   );
 
   return (
-    <div className="flex flex-row items-center justify-between border-y-20 border-gray-100 py-20 px-10 w-full bg-white tracking-widest">
+    <div className="flex flex-row items-center justify-between border-y-20 border-gray-50 py-36 px-10 w-full bg-white tracking-widest">
       <div className="w-1/6">
         <div className="font-bold text-center border-r-10 border-gray-200 pr-20 text-[#122e4c] ">
-          <div className="text-5xl whitespace-nowrap mb-1">
+          <div className="text-6xl whitespace-nowrap mb-1">
             {item.debut_fin_json_v2}
           </div>
           <div className="px-1">{progressBar}</div>
         </div>
       </div>
       <div className="w-1/2 mx-16">
-        <h3 className="font-black text-5xl leading-tight  text-[#122e4c]">
+        <h3 className="font-black text-6xl leading-tight  text-[#122e4c]">
           {item.formation_json_v2}
         </h3>
-        <div className="text-gray-500 text-5xl mt-1 italic font-medium">
+        <div className="text-gray-500 text-6xl mt-1 italic font-medium">
           {item.matiere_json}
         </div>
       </div>
       <div className="w-1/5 mx-10">
-        <p className="text-gray-800 font-semibold text-5xl">
+        <p className="text-gray-800 font-semibold text-6xl">
           {item.intervenant_json}
         </p>
         {item.intervenant_binome_json && (
-          <p className="text-gray-800 font-semibold text-5xl pt-16">
+          <p className="text-gray-800 font-semibold text-6xl pt-16">
             {item.intervenant_binome_json}
           </p>
         )}
       </div>
       <div className="w-1/6 text-left">
-        <span className="text-[#122e4c] text-5xl font-black">
+        <span className="text-[#122e4c] text-6xl font-black">
           {item.salle_json_v2}
         </span>
       </div>

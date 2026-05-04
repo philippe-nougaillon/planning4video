@@ -143,27 +143,7 @@ const Planning = () => {
     10 * 60 * 1000,
   );
 
-  const footer = (
-    <div className="flex flex-row gap-10 p-6 text-4xl text-[#122e4c] font-semibold ">
-      <div>
-        <h4>
-          <div className="progress">
-            <div
-              className="progress-bar bg-warning"
-              style={{
-                opacity: 0.8,
-                width: (currentTick - 1) * 10 + "%",
-              }}
-            ></div>
-          </div>
-        </h4>
-      </div>
-
-      <div>
-        <h4>{`Page : ${currentPage + 1} sur ${planning.totalPages + 1}`}</h4>
-      </div>
-    </div>
-  );
+ 
 
   return (
     <>
@@ -187,11 +167,17 @@ const Planning = () => {
           <div className="w-1/6">SALLE</div>
         </div>
 
-        <ListeCours items={paginatedPlanning} />
+       <div className="flex flex-col flex-1">
+    <ListeCours items={paginatedPlanning} />
+  </div>
 
-        {currentPage !== -1 && footer}
-        
-      </div>
+  {currentPage !== -1 && (
+    <div className="flex justify-end p-6 text-4xl text-[#122e4c] font-semibold">
+      <h4>{`Page : ${currentPage + 1} sur ${planning.totalPages + 1}`}</h4>
+    </div>
+  )}
+
+</div>
     </>
   );
 };
