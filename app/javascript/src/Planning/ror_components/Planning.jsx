@@ -15,9 +15,7 @@ const useInterval = (callback, delay) => {
   }, [callback]);
 
   useEffect(() => {
-    const tick = () => {
-      savedCallback.current();
-    };
+    const tick = () => savedCallback.current();
     if (delay !== null) {
       let id = setInterval(tick, delay);
       return () => clearInterval(id);
@@ -29,9 +27,12 @@ const Planning = () => {
   const per_page = 4; // nombre de lignes par page
   const time_to_sleep = 10; // pause entre deux pages (en secondes)
   const reload_data_every = 60; // recharger les données chaque minute
+
   const [currentPage, setCurrentPage] = useState(-1);
   const [currentTick, setCurrentTick] = useState(time_to_sleep);
   const [paginatedPlanning, setPaginatedPlanning] = useState([]);
+
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const planningReducer = (state, action) => {
     switch (action.type) {
@@ -80,6 +81,7 @@ const Planning = () => {
           type: "PLANNING_FETCH_SUCCESS",
           payload: result,
         });
+
         //console.log("PLANNING_FETCH_SUCCESS");
         setCurrentPage((prev) => (prev === -1 ? 0 : prev));
       })
@@ -93,62 +95,75 @@ const Planning = () => {
 
   useEffect(() => {
     if (currentPage === -1) return;
+
     // Pagine la liste des cours par tranche de 'per_page'
     const item_position = per_page * currentPage;
+
     setPaginatedPlanning(
       planning.data.slice(item_position, item_position + per_page),
     );
-    // console.log(
-    //   `PLANNING_PAGINATE data.length: ${planning.data.length} | pages: ${planning.data.length / per_page} | currentPage: ${currentPage} | slice start: ${item_position} | slice end: ${item_position + per_page}`,
-    // );
   }, [currentPage, planning.data]);
 
-
+  //  countdown
   useInterval(() => {
-        // Décompte les secondes avant le changement de page
-  setCurrentTick((prev) => {
-    if (prev > 0) {
-      return prev - 1;
-    }
-    return 0;
-  });
-}, 1000);
+    setCurrentTick((prev) => (prev > 0 ? prev - 1 : 0));
+  }, 1000);
 
-
+  //  changement de page (corrigé + stable)
   useInterval(() => {
-        // Changer de page à l'expiration du délai
-  setCurrentPage((prev) => {
-    if (prev < planning.totalPages) {
-      return prev + 1;
-    } else {
-      return 0;
-    }
-  });
+    if (isTransitioning) return;
 
-  setCurrentTick(time_to_sleep);
-}, time_to_sleep * 1000);
+    setIsTransitioning(true);
 
+    setCurrentPage((prev) => {
+      const total = planning.totalPages || 0;
+      if (total === 0) return 0;
+      return prev >= total ? 0 : prev + 1;
+    });
+
+    setCurrentTick(time_to_sleep);
+
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
+  }, time_to_sleep * 1000);
+
+  // 🔄 reload data (stable)
   useInterval(() => {
-    //console.log("Planning Fetching DATA from Planning...");
     fetchPlanning();
   }, reload_data_every * 1000);
 
+  //  reload total (sécurisé pour EC Video)
+  useInterval(
+    () => {
+      if (document.visibilityState === "visible") {
+        window.location.reload();
+      }
+    },
+    10 * 60 * 1000,
+  );
+
   const footer = (
     <div className="flex flex-row gap-10 p-6 text-4xl">
-      <div className="col-sm-6 capitalize">
+      <div className="capitalize">
         <h4>{moment().locale("fr").format("dddd D/MM HH:mm")}</h4>
       </div>
-      <div className="col-sm-5">
+
+      <div>
         <h4>
           <div className="progress">
             <div
               className="progress-bar bg-warning"
-              style={{ opacity: 0.8, width: (currentTick - 1) * 10 + "%" }}
+              style={{
+                opacity: 0.8,
+                width: (currentTick - 1) * 10 + "%",
+              }}
             ></div>
           </div>
         </h4>
       </div>
-      <div className="col-sm-1">
+
+      <div>
         <h4>{`Page: ${currentPage + 1} sur ${planning.totalPages + 1}`}</h4>
       </div>
     </div>
@@ -161,24 +176,24 @@ const Planning = () => {
       )}
 
       <div className="w-screen h-screen bg-white flex flex-col overflow-hidden px-10">
-
-          <div className="flex items-center justify-between px-8 py-4">
-     <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
-            <div className="text-[#122e4c] font-bold text-5xl text-left tracking-widest uppercase">
-              Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
-            </div>
+        <div className="flex items-center justify-between px-8 py-4">
+          <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
+          <div className="text-[#122e4c] font-bold text-5xl tracking-widest uppercase">
+            Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
           </div>
-
-          <div className="flex flex-row text-5xl items-center justify-between px-20 w-full mb-20 mt-20 font-bold text-gray-500 tracking-widest">
-            <div className="w-1/6 pr-6">HORAIRES</div>
-            <div className="w-1/2 mx-16">FORMATION</div>
-            <div className="w-1/5 mx-10">INTERVENANT</div>
-            <div className="w-1/6">SALLE</div>
-          </div>
-
-          <ListeCours items={paginatedPlanning} />
-      {currentPage !== -1 && footer}
         </div>
+
+        <div className="flex flex-row text-5xl items-center justify-between px-20 w-full mb-20 mt-20 font-bold text-gray-500 tracking-widest">
+          <div className="w-1/6 pr-6">HORAIRES</div>
+          <div className="w-1/2 mx-16">FORMATION</div>
+          <div className="w-1/5 mx-10">INTERVENANT</div>
+          <div className="w-1/6">SALLE</div>
+        </div>
+
+        <ListeCours items={paginatedPlanning} />
+
+        {currentPage !== -1 && footer}
+      </div>
     </>
   );
 };
