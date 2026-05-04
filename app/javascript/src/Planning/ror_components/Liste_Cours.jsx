@@ -18,8 +18,8 @@ const ListeCours = ({ items }) => {
   };
 
   return (
-    <div className="w-full px-8 py-4"> 
-      {items.map((item) => (
+   <div className="w-full h-full flex flex-col">
+  {items.map((item) => (
         <Cours key={item.id} item={item} />
       ))}
     </div>

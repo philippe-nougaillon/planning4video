@@ -26,9 +26,9 @@ const useInterval = (callback, delay) => {
 };
 
 const Planning = () => {
-  const per_page = 7; // nombre de lignes par page
+  const per_page = 4; // nombre de lignes par page
   const time_to_sleep = 10; // pause entre deux pages (en secondes)
-  const reload_data_every = 60 // recharger les données chaque minute 
+  const reload_data_every = 60; // recharger les données chaque minute
   const [currentPage, setCurrentPage] = useState(-1);
   const [currentTick, setCurrentTick] = useState(time_to_sleep);
   const [paginatedPlanning, setPaginatedPlanning] = useState([]);
@@ -47,8 +47,10 @@ const Planning = () => {
           isLoading: false,
           isError: false,
           data: action.payload,
-          totalPages: Math.max(0, Math.ceil(action.payload.length / per_page) - 1),
-
+          totalPages: Math.max(
+            0,
+            Math.ceil(action.payload.length / per_page) - 1,
+          ),
         };
       case "PLANNING_FETCH_FAILURE":
         return {
@@ -110,7 +112,7 @@ const Planning = () => {
   }, 1000);
 
   useInterval(() => {
-    // Changer de page à l'expiration du délai 
+    // Changer de page à l'expiration du délai
     if (currentPage < planning.totalPages) {
       setCurrentPage(currentPage + 1);
     } else {
@@ -125,7 +127,7 @@ const Planning = () => {
   }, reload_data_every * 1000);
 
   const footer = (
-    <div className="flex flex-row gap-10 p-6">
+    <div className="flex flex-row gap-10 p-6 text-4xl">
       <div className="col-sm-6 capitalize">
         <h4>{moment().locale("fr").format("dddd D/MM HH:mm")}</h4>
       </div>
@@ -151,14 +153,10 @@ const Planning = () => {
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       )}
 
-      <div className="w-full min-h-screen bg-white flex justify-center overflow-hidden px-20 py-10">
-        <div className="w-full max-w-[3960px] min-h-screen">
-          <div className="flex flex-row items-center justify-between pl-4 pr-8 py-4 gap-4">
-            <img
-              src="/LogoIAE.png"
-              alt="Logo"
-              className="h-64 w-fit"
-            />
+      <div className="w-screen h-screen bg-white flex flex-col overflow-hidden px-10">
+
+          <div className="flex items-center justify-between px-8 py-4">
+     <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
             <div className="text-[#122e4c] font-bold text-5xl text-left tracking-widest uppercase">
               Cours du {moment().locale("fr").format("dddd D MMMM YYYY")}
             </div>
@@ -167,15 +165,13 @@ const Planning = () => {
           <div className="flex flex-row text-5xl items-center justify-between px-20 w-full mb-20 mt-20 font-bold text-gray-500 tracking-widest">
             <div className="w-1/6 pr-6">HORAIRES</div>
             <div className="w-1/2 mx-16">FORMATION</div>
-            <div className="w-1/5 pl-10">INTERVENANT</div>
+            <div className="w-1/5 mx-10">INTERVENANT</div>
             <div className="w-1/6">SALLE</div>
           </div>
 
           <ListeCours items={paginatedPlanning} />
-
-        </div>
-      </div>
       {currentPage !== -1 && footer}
+        </div>
     </>
   );
 };
