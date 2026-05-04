@@ -9,7 +9,8 @@ const Cours = ({ item }) => {
       <div
         className="bg-[#e68708] h-full rounded-full absolute left-0 top-0"
         style={{ width: `${item.progress_bar_pct2 || 0}%` }}
-      ></div>
+      >
+      </div>
     </div>
   );
 
@@ -23,7 +24,7 @@ const Cours = ({ item }) => {
           <div className="px-1">{progressBar}</div>
         </div>
       </div>
-      <div className="flex-1 px-20 ">
+      <div className="flex-1 px-20">
         <h3 className="font-black text-7xl leading-tight   text-[#122e4c]">
           {item.formation_json_v2}
         </h3>
@@ -31,15 +32,15 @@ const Cours = ({ item }) => {
           {item.matiere_json}
         </div>
       </div>
-      <div className="flex-1 ">
+      <div className="flex-1">
         <p className="text-gray-800 font-semibold text-5xl">
           {item.intervenant_json}
         </p>
-        {/* {item.intervenant_binome_json && (
-          <p className="text-red-500 italic text-xs">
+        {item.intervenant_binome_json && (
+          <p className="text-gray-800 font-semibold text-5xl pt-16">
             {item.intervenant_binome_json}
           </p>
-        )} */}
+        )}
       </div>
       <div className="flex-1 text-left">
         <span className="text-[#122e4c] text-7xl font-black">
@@ -49,6 +50,7 @@ const Cours = ({ item }) => {
     </div>
   );
 };
+
 Cours.propTypes = {
   item: PropTypes.object,
 };
