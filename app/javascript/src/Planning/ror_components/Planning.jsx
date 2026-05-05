@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useReducer, useRef, useEffect } from "react";
 import ListeCours from "./Liste_Cours";
 import moment from "moment";
@@ -25,7 +28,7 @@ const useInterval = (callback, delay) => {
 
 const Planning = () => {
   const per_page = 4; // nombre de lignes par page
-  const time_to_sleep = 10; // pause entre deux pages (en secondes)
+  const time_to_sleep = 8; // pause entre deux pages (en secondes)
   const reload_data_every = 60; // recharger les données chaque minute
 
   const [currentPage, setCurrentPage] = useState(-1);
@@ -143,7 +146,6 @@ const Planning = () => {
     10 * 60 * 1000,
   );
 
- 
 
   return (
     <>
@@ -151,32 +153,33 @@ const Planning = () => {
         <h1 className="text-center mt-10 text-2xl">Chargement...</h1>
       )}
 
-      <div className="w-screen h-screen bg-white flex flex-col overflow-hidden px-10 border-gradient">
-        
-        <div className="flex items-center justify-between px-8 py-4">
-          <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
-          <div className="text-[#122e4c] font-bold text-5xl tracking-widest uppercase">
-           {moment().locale("fr").format("dddd D MMMM YYYY HH:mm")}
-          </div>
-        </div>
+    <div className="w-screen h-screen bg-slate-50 flex flex-row overflow-hidden border-gradient"> 
 
-        <div className="flex flex-row text-5xl items-center justify-between px-20 w-full mb-20 mt-20 font-bold text-gray-500 tracking-widest">
-          <div className="w-1/6 pr-6">HORAIRES</div>
-          <div className="w-1/2 mx-16">FORMATION</div>
-          <div className="w-1/5 mx-10">INTERVENANT</div>
-          <div className="w-1/6">SALLE</div>
-        </div>
+  <div className="flex flex-col w-full px-10">
+    
+    <div className="flex items-center justify-between px-8 py-6">
+      <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
+      <div className="text-[#122e4c] font-black text-6xl tracking-tight uppercase">
+        {moment().format("dddd D MMMM YYYY HH:mm")}
+      </div>
+    </div>
 
-       <div className="flex flex-col flex-1">
-    <ListeCours items={paginatedPlanning} />
-  </div>
+    <div className="flex flex-row text-3xl items-center justify-between px-20 w-full py-4 bg-[#122e4c] text-white rounded-t-xl mt-10 font-bold uppercase tracking-[0.2em]">
+      <div className="w-1/6 pr-20">Horarios</div>
+      <div className="w-1/2 ml-12 ">Formation</div>
+      <div className="w-1/4 ml-48 ">Intervenant</div>
+      <div className="w-1/6 ml-18 ">Salle</div>
+    </div>
 
-  {currentPage !== -1 && (
+    <div className="flex flex-col flex-1 bg-white shadow-2xl rounded-b-xl mb-10">
+      <ListeCours items={paginatedPlanning} />
+    </div>
+    {currentPage !== -1 && (
     <div className="flex justify-end p-6 text-4xl text-[#122e4c] font-semibold">
       <h4>{`Page : ${currentPage + 1} sur ${planning.totalPages + 1}`}</h4>
     </div>
   )}
-
+  </div>
 </div>
     </>
   );
