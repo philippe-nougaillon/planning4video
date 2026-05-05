@@ -158,7 +158,7 @@ const Planning = () => {
   <div className="flex flex-col w-full px-10">
     
     <div className="flex items-center justify-between px-8 py-6">
-      <img src="/LogoIAE.png" alt="Logo" className="h-48 w-fit" />
+      <img src="/logoiae.png384" alt="Logo" className="h-48 w-fit" />
       <div className="text-[#122e4c] font-black text-6xl tracking-tight uppercase">
         {moment().format("dddd D MMMM YYYY HH:mm")}
       </div>
