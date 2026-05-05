@@ -165,7 +165,7 @@ const Planning = () => {
     </div>
 
     <div className="flex flex-row text-3xl items-center justify-between px-20 w-full py-4 bg-[#122e4c] text-white rounded-t-xl mt-10 font-bold uppercase tracking-[0.2em]">
-      <div className="w-1/6 pr-20">Horarios</div>
+      <div className="w-1/6 pr-20">Horaires</div>
       <div className="w-1/2 ml-12 ">Formation</div>
       <div className="w-1/4 ml-48 ">Intervenant</div>
       <div className="w-1/6 ml-18 ">Salle</div>
