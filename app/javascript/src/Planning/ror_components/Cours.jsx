@@ -40,8 +40,8 @@ const Cours = ({ item }) => {
       ></div>
 
       {/* formation */}
-      <div className="w-1/2 py-20 px-16 flex flex-col justify-center">
-        <h3 className="font-black text-6xl leading-tight text-[#122e4c]">
+      <div className="w-1/2 py-20 px-16 flex flex-col justify-center mt-4">
+        <h3 className="font-black text-6xl mr-20 leading-tight text-[#122e4c]">
           {item.formation_json_v2}
         </h3>
         <div className="text-gray-500 text-5xl mt-2 italic font-medium">
@@ -70,7 +70,7 @@ const Cours = ({ item }) => {
 
       {/*  live ou pas? */}
      {estaPasando && (
-        <div className="absolute top-20 right-1/2  bg-[#e68708] text-white text-3xl  px-6 py-2 rounded-full font-bold animate-expand-horizontally">
+        <div className="absolute top-10 right-2/5  bg-[#e68708] text-white text-3xl  px-6 py-2 rounded-full font-bold animate-expand-horizontally">
           En Cours
         </div>
       )}
