@@ -85,7 +85,6 @@ const Planning = () => {
           payload: result,
         });
 
-        //console.log("PLANNING_FETCH_SUCCESS");
         setCurrentPage((prev) => (prev === -1 ? 0 : prev));
       })
       .catch(() => dispatchPlanning({ type: "PLANNING_FETCH_FAILURE" }));
@@ -98,7 +97,6 @@ const Planning = () => {
   useEffect(() => {
     if (currentPage === -1) return;
 
-    // Pagine la liste des cours par tranche de 'per_page'
     const item_position = per_page * currentPage;
 
     setPaginatedPlanning(
@@ -106,12 +104,10 @@ const Planning = () => {
     );
   }, [currentPage, planning.data]);
 
-  //  countdown
   useInterval(() => {
     setCurrentTick((prev) => (prev > 0 ? prev - 1 : 0));
   }, 1000);
 
-  //  changement de page (corrigé + stable)
   useInterval(() => {
     if (isTransitioning) return;
 
@@ -135,7 +131,6 @@ const Planning = () => {
     fetchPlanning();
   }, reload_data_every * 1000);
 
-  //  reload total (sécurisé pour EC Video)
   useInterval(
     () => {
       if (document.visibilityState === "visible") {

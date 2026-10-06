@@ -18,6 +18,9 @@ const Cours = ({ item }) => {
     </div>
   );
 
+  const nettoyerNom = (nom) =>
+  (nom || "").replace(/_/g, " ").replace(/\s+/g, " ").trim();
+
   return (
     <div className="flex flex-row items-stretch justify-between border-b-20 border-gray-50 w-full bg-white tracking-widest relative">
       {/* horarires */}
@@ -52,10 +55,10 @@ const Cours = ({ item }) => {
       {/* intervenant */}
       <div className="w-1/4 py-20 px-10 flex flex-col justify-center">
         <p className="text-gray-800 font-bold text-5xl leading-snug">
-          {item.intervenant_json}
+          {nettoyerNom(item.intervenant_json)}
           {item.intervenant_binome_json && (
             <span className="block text-gray-500 font-medium text-4xl mt-2">
-              & {item.intervenant_binome_json}
+              & {nettoyerNom(item.intervenant_binome_json)}
             </span>
           )}
         </p>
