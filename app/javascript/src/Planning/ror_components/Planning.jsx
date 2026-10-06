@@ -92,7 +92,6 @@ const Planning = () => {
   };
 
   useEffect(() => {
-    //console.log("PLANNING_EFFECT #1 (app first run)")
     fetchPlanning();
   }, []);
 
