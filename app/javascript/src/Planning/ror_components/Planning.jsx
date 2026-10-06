@@ -28,7 +28,7 @@ const useInterval = (callback, delay) => {
 
 const Planning = () => {
   const per_page = 5; // nombre de lignes par page
-  const time_to_sleep = 6; // pause entre deux pages (en secondes)
+  const time_to_sleep = 5; // pause entre deux pages (en secondes)
   const reload_data_every = 40; // recharger les données chaque minute
 
   const [currentPage, setCurrentPage] = useState(-1);
@@ -170,7 +170,7 @@ const Planning = () => {
       <div className="w-1/6 ml-18 ">Salle</div>
     </div>
 
-    <div className="flex flex-col flex-1 bg-white shadow-2xl rounded-b-xl mb-4">
+    <div className="flex flex-col flex-1 bg-white shadow-2xl rounded-xl mb-4">
       <ListeCours items={paginatedPlanning} />
     </div>
     {currentPage !== -1 && (
