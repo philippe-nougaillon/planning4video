@@ -27,9 +27,9 @@ const useInterval = (callback, delay) => {
 };
 
 const Planning = () => {
-  const per_page = 4; // nombre de lignes par page
-  const time_to_sleep = 8; // pause entre deux pages (en secondes)
-  const reload_data_every = 60; // recharger les données chaque minute
+  const per_page = 5; // nombre de lignes par page
+  const time_to_sleep = 6; // pause entre deux pages (en secondes)
+  const reload_data_every = 40; // recharger les données chaque minute
 
   const [currentPage, setCurrentPage] = useState(-1);
   const [currentTick, setCurrentTick] = useState(time_to_sleep);
@@ -157,21 +157,21 @@ const Planning = () => {
 
   <div className="flex flex-col w-full px-10">
     
-    <div className="flex items-center justify-between px-8 py-6">
+    <div className="flex items-center justify-between px-8">
       <img src="/logoiae.png" alt="Logo" className="h-48 w-fit" />
       <div className="text-[#122e4c] font-black text-6xl tracking-tight uppercase">
         {moment().format("dddd D MMMM YYYY HH:mm")}
       </div>
     </div>
 
-    <div className="flex flex-row text-3xl items-center justify-between px-20 w-full py-4 bg-[#122e4c] text-white rounded-t-xl mt-10 font-bold uppercase tracking-[0.2em]">
+    <div className="flex flex-row text-3xl items-center justify-between px-20 w-full py-4 bg-[#122e4c] text-white rounded-t-xl font-bold uppercase tracking-[0.2em]">
       <div className="w-1/6 pr-20">Horaires</div>
       <div className="w-1/2 ml-12 ">Formation</div>
       <div className="w-1/4 ml-48 ">Intervenant</div>
       <div className="w-1/6 ml-18 ">Salle</div>
     </div>
 
-    <div className="flex flex-col flex-1 bg-white shadow-2xl rounded-b-xl mb-10">
+    <div className="flex flex-col flex-1 bg-white shadow-2xl rounded-b-xl mb-4">
       <ListeCours items={paginatedPlanning} />
     </div>
     {currentPage !== -1 && (
